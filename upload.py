@@ -10,9 +10,10 @@ from samsungtvws import SamsungTVWS
 import sys
 
 BASE_DIRECTORY = "/home/projects/samsung_tv/images"
-#IMAGE_DIRECTORY = "home/pictures/Dublin '18"
-#IMAGE_DIRECTORY = BASE_DIRECTORY + "/classic_paintings"
-IMAGE_DIRECTORY = BASE_DIRECTORY + "/space_pics"
+IMAGE_DIRECTORY = "/home/owen/Pictures/Dublin '17"
+# IMAGE_DIRECTORY = "home/pictures/Dublin '18"
+# IMAGE_DIRECTORY = BASE_DIRECTORY + "/classic_paintings"
+# IMAGE_DIRECTORY = BASE_DIRECTORY + "/space_pics"
 TV_IP_ADDRESS = "192.168.178.28"
 
 # MATTE TYPES (not all matte types work for all images)
@@ -53,7 +54,6 @@ def upload_image(image_path):
             # portrait_matte="flexible_apricot"
         )
         print(f"Uploaded {image_path}: {response}")
-        print(f"{time.ctime()}")
     except KeyboardInterrupt:
         print("KeyboardInterrupt: Exiting...")
         sys.exit(1)
@@ -70,8 +70,7 @@ def upload_images_in_directory(directory):
     for filename in files:
         full_path = os.path.join(directory, filename)
         upload_image(full_path)
-        # Sleep 2 seconds to let the Frame TV process the image;
-        # I found this helps a lot when uploading >25 in sequence
+        # Sleep 2 seconds to let the Frame TV process the image
         time.sleep(2)
 
 # Call the function to upload all images
